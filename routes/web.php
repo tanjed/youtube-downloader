@@ -11,5 +11,7 @@
 |
 */
 
-
+Route::get('/home', function () {
+    return view('home');
+})->name('home');
 Route::get('/',[\App\Http\Controllers\YoutubeController::class,'search']);
