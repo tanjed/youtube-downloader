@@ -28,12 +28,39 @@ class YoutubeController extends Controller
     private function formatPayload($info,$videoFormats,$audioFormats)
     {
         $thumbnail = collect($info['thumbnail']['thumbnails'])->last();
-        return [
+        $payload = [
             'id' => $info['videoId'],
             'thumbnail' => $thumbnail['url'],
             'name' => $info['title'],
             'duration' => gmdate("H:i:s", $info['lengthSeconds']),
-            'download_options' => []
+            'audio' => [],
+            'video' => []
         ];
+
+        foreach ($videoFormats as $format)
+        {
+            $payload['video'][] = [
+                'mimeType' => $this->getMimeType($format->mimeType),
+                'resolution' => $format->width.'x'.$format->height,
+                'url' => $format->url,
+            ];
+        }
+        foreach ($audioFormats as $format)
+        {
+            $payload['audio'][] = [
+                'mimeType' => $this->getMimeType($format->mimeType),
+                'bit' => (int)($format->audioSampleRate/1000). 'kbps',
+                'url' => $format->url,
+            ];
+        }
+
+        return $payload;
+
+    }
+
+    private function getMimeType($combinedType)
+    {
+        $mimeType = explode(';',$combinedType);
+        return explode('/',$mimeType[0])[1];
     }
 }
