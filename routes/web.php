@@ -11,18 +11,5 @@
 |
 */
 
-use YouTube\Exception\YouTubeException;
-use YouTube\YouTubeDownloader;
 
-Route::get('/', function () {
-    $youtube = new YouTubeDownloader();
-
-    try {
-        $downloadOptions = $youtube->getDownloadLinks("https://www.youtube.com/watch?v=akP0cRf7RO4");
-        $item = collect($downloadOptions->getAudioFormats())->last();
-        dd((new \App\Services\Downloader())->downloader($item));
-
-    } catch (YouTubeException $e) {
-        echo 'Something went wrong: ' . $e->getMessage();
-    }
-});
+Route::get('/',[\App\Http\Controllers\YoutubeController::class,'search']);
