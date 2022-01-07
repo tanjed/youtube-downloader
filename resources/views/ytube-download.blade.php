@@ -4,7 +4,7 @@
     <div class="bg-theme text-center">
         <div class="container m-auto">
             <div class="mb-4">
-                <h1>YouTube to MP3</h1>
+                <h1>YouTube Downloader</h1>
             </div>
             <div class="row">
                 <div class="col-12 col-lg-10 mx-auto">
@@ -13,7 +13,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
                             </svg>
-                            <input name="type" value="ytmp3" hidden />
+                            <input name="type" value="ytdown" hidden />
                             <input name="url" type="text" class="form-control form-control-lg" placeholder="Search keywords or paste link here..." aria-label="Search" required="" />
                             <button class="btn btn-lg btn-primary text-light border" type="submit">Search</button>
                         </div>
@@ -23,19 +23,65 @@
         </div>
     </div>
 
+    <div class="container text-center"></div>
+
     <section class="container m-auto">
-        <div class="tiktok">
+        <div
+            style="
+            margin: 2px;
+            display: flex;
+            align-items: center;
+            border-radius: 10px;
+            opacity: 0.99;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            animation-name: rightTop;
+            animation-timing-function: ease-in-out;
+            animation-duration: 0.3s;
+            animation-fill-mode: forwards;
+        "
+        >
             <div style="width: 100%;">
-                <div class="tiktok-logo">
+                <div
+                    style="
+                    justify-content: flex-start;
+                    height: 80px;
+                    flex-direction: row;
+                    margin: 10px 0;
+                    background: rgb(255, 255, 255);
+                    overflow: hidden;
+                    border-radius: 10px;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    text-align: center;
+                    position: relative;
+                    text-decoration: none;
+                "
+                >
                     <a href="https://savett.cc" target="black">
-                        <img src="https://savett.cc/static/images/favicon.ico" alt="TikTok Downloader" />
+                        <img src="https://savett.cc/static/images/favicon.ico" alt="TikTok Downloader" style="border-radius: 10px; height: 50px; width: 50px; margin: 10px 10px 10px 10px; padding: 5px;" />
                     </a>
-                    <div class="tiktok-video">
-                        <p>
-                            <a href="https://savett.cc" target="black">TikTok Video Downloader</a>
+                    <div
+                        style="
+                        overflow: hidden;
+                        color: black;
+                        width: calc(80% - 20px);
+                        max-height: 70px;
+                        text-align: left;
+                        padding: 5px 5px 5px 0;
+                        font: 14px/1.4 medium-content-sans-serif-font, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, Montserrat, '
+                    Open Sans', 'Helvetica Neue', Arial, sans-serif,
+                            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+                        position: relative;
+                    "
+                    >
+                        <p style="max-height: 30px; font-size: 1.2rem; font-weight: bold; overflow: hidden; margin: 0;">
+                            <a href="https://savett.cc" style="--tw-text-opacity: 1; color: rgba(43, 113, 155, var(--tw-text-opacity));" target="black">TikTok Video Downloader</a>
                         </p>
-                        <p class="tiktok-watermark">
-                            <a href="https://savett.cc" target="black">TikTok Downloader - Download and Save TikTok Videos Without Watermark.</a>
+                        <p style="max-height: 32px; font-weight: 300; font-size: 1.2rem; font-weight: 300; overflow: hidden; margin: 0;">
+                            <a href="https://savett.cc" style="--tw-text-opacity: 1; color: rgba(43, 113, 155, var(--tw-text-opacity));" target="black">TikTok Downloader - Download and Save TikTok Videos Without Watermark.</a>
                         </p>
                     </div>
                 </div>
@@ -44,7 +90,7 @@
     </section>
 
     <section class="pt-5 pb-4 container m-auto">
-        <h2 class="text-center mb-4">How to Convert YouTube to MP3 Music</h2>
+        <h2 class="text-center mb-4">How to download YouTube video online</h2>
         <div class="row m-auto text-left">
             <div class="col-md-4">
                 <div class="icon">
@@ -56,7 +102,7 @@
                     </div>
                     <div class="icon-text">
                         <h5>Copy Video URL</h5>
-                        <p class="text-muted">Copy a video URL or an artist name from YouTube or any other video sites.</p>
+                        <p class="text-muted">Copy YouTube video URL or song or artist name.</p>
                     </div>
                 </div>
             </div>
@@ -80,7 +126,7 @@
                     </div>
                     <div class="icon-text">
                         <h5>Paste Video URL</h5>
-                        <p class="text-muted">Paste the YouTube URL into search box and press the 'Search' button.</p>
+                        <p class="text-muted">Paste the URL into search box and press 'Search' button.</p>
                     </div>
                 </div>
             </div>
@@ -95,8 +141,8 @@
                         </svg>
                     </div>
                     <div class="icon-text">
-                        <h5>Download MP3 File</h5>
-                        <p class="text-muted">Select a target MP3 quality and press 'Download' to save the MP3 file.</p>
+                        <h5>Download Video File</h5>
+                        <p class="text-muted">Click 'Download' button to save the video file.</p>
                     </div>
                 </div>
             </div>
@@ -106,10 +152,10 @@
     <section class="py-2 container m-auto">
         <div class="row text-left">
             <div class="col-12">
-                <h2 class="text-center">Top YouTube to MP3 Converter Online</h2>
+                <h2 class="text-center">The Best YouTube Downloader Online</h2>
                 <p>
-                    320YTMp3 enables you to download and convert YouTube video to MP3 music with high quality up to 320kbps. All popular formats supported include MP4, MP3, FLV, M4V, WMV and WEBM. You can freely download video from YouTube and
-                    convert them to MP3 audio with no limitation.
+                    320YTMp3 enables you to download YouTube audio and video files with best quality. You can download audio or video from YouTube free of charge. It is reliable and no limitation for the downloading. There are multiple media
+                    formats supported, including MP4, MP3, FLV, M4V, WMV and WEBM.
                 </p>
             </div>
         </div>
@@ -119,8 +165,8 @@
             <div class="col-12">
                 <h2 class="text-center">Multiple Features and Rich Video Sources</h2>
                 <p>
-                    320YTMp3 provides playlist downloading and is compatible with all browsers. In addition, it is totally free of software registration and installation. Except YouTube, you could grab your favorite audio/video from 1000+ sites
-                    such as Facebook, Vimeo, Dailymotion etc.
+                    320YTMp3 lets you download entire playlist, which is not allowable by lots of similar sites. In addition, it is totally free of software registration and installation. Except YouTube, you could grab your favorite audio/video
+                    from 1000+ sites such as Facebook, Vimeo, Dailymotion etc.
                 </p>
             </div>
         </div>

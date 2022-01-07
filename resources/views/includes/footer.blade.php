@@ -1,8 +1,7 @@
 <footer class="footer text-center mb-4 mb-lg-0 py-2">
     <div class="container">
         <div class="row justify-content-center">
-            <p>DISCLAIMER: 320ytmp3.com serves you on a legal basis. Do
-                not download any copyrighted materials without permission.</p>
+            <p>DISCLAIMER: 320ytmp3.com serves you on a legal basis. Do not download any copyrighted materials without permission.</p>
         </div>
         <div class="row justify-content-center">
             <ul class="list-inline mb-0">
