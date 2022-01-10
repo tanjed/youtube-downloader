@@ -23,6 +23,9 @@ Route::get('/converter', function () {
 Route::get('/downloader', function () {
     return view('ytube-download');
 })->name('downloader');
+Route::get('/convert', function () {
+    return view('convert');
+})->name('convert');
 
 
 Route::get('/',[\App\Http\Controllers\YoutubeController::class,'search']);
