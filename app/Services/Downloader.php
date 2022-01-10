@@ -8,10 +8,10 @@ use Illuminate\Support\Str;
 class Downloader
 {
     const PART_LENGTH = 50000;
-    public function downloader($object)
+    public static function get($object)
     {
-        $info = $this->getMimeType($object->mimeType);
-        $fileName = Str::random(10);
+        $info = self::getMimeType($object->mimeType);
+        $fileName = $object->id.'_'.$object->bit;
         $filePath =  public_path("{$fileName}.{$info['extension']}");
         $url = $object->url;
         $length = $object->contentLength;
@@ -27,7 +27,7 @@ class Downloader
         return $filePath;
     }
 
-    private function getMimeType($mimeType)
+    private static function getMimeType($mimeType)
     {
         $mimeType = collect(explode(';',$mimeType))->first();
         $extension = explode('/',$mimeType)[1];

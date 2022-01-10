@@ -11,21 +11,21 @@
 |
 */
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('home');
 })->name('home');
-Route::get('/mp4', function () {
-    return view('mp4');
-})->name('mp4');
-Route::get('/converter', function () {
-    return view('ytube-converter');
-})->name('converter');
-Route::get('/downloader', function () {
-    return view('ytube-download');
-})->name('downloader');
-Route::get('/convert', function () {
-    return view('convert');
-})->name('convert');
+//Route::get('/mp4', function () {
+//    return view('mp4');
+//})->name('mp4');
+//Route::get('/converter', function () {
+//    return view('ytube-converter');
+//})->name('converter');
+//Route::get('/downloader', function () {
+//    return view('ytube-download');
+//})->name('downloader');
+//Route::get('/convert', function () {
+//    return view('convert');
+//})->name('convert');
 
 
-Route::get('/',[\App\Http\Controllers\YoutubeController::class,'search']);
+Route::post('/download',[\App\Http\Controllers\YoutubeController::class,'search'])->name('search');

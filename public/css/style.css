@@ -101,7 +101,7 @@ nav {
     --tw-text-opacity: 1; color: rgba(43, 113, 155,var(--tw-text-opacity));
 }
 .tiktok-watermark {
-    max-height: 32px; font-weight: 300;font-size:1.2rem;font-weight: 300; overflow: hidden; margin: 0;
+    max-height: 32px; font-weight: normal !important; font-size:1.2rem; overflow: hidden; margin: 0;
 }
 .tiktok-watermark a {
     --tw-text-opacity: 1; color: rgba(43, 113, 155,var(--tw-text-opacity));

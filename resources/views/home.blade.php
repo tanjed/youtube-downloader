@@ -8,13 +8,13 @@
             </div>
             <div class="row">
                 <div class="col-12 col-lg-10 mx-auto">
-                    <form id="go" class="form-group" action="">
+                    <form id="go" class="form-group" action="{{route('search')}}" method="POST">
+                        {{csrf_field()}}
                         <div class="has-search">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
                             </svg>
-                            <input name="type" value="ytmp3" hidden />
-                            <input name="" type="text" class="form-control form-control-lg" placeholder="Search keywords or paste link here..." aria-label="Search" required="" />
+                            <input name="q" type="text" class="form-control form-control-lg" placeholder="Search keywords or paste link here..." aria-label="Search" required="" />
                             <button class="btn btn-lg btn-primary text-light border" type="submit">Search</button>
                         </div>
                     </form>
@@ -22,14 +22,15 @@
             </div>
         </div>
     </div>
+    @if(isset($payload))
     <div id="video-part">
         <section class="video-details">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-5">
-                        <img src="https://i.ytimg.com/vi/sxAn4UFgDfQ/hqdefault.jpg" class="figure-img img-fluid rounded w-100" alt="Ekbaar Bolo | Vikings | Banglalink presents Legends of Rock">
-                        <h5>Ekbaar Bolo | Vikings | Banglalink presents Legends of Rock</h5>
-                        <p class="mb-2">Duration: 0:05:57</p>
+                        <img src="{{$payload['thumbnail']}}" class="figure-img img-fluid rounded w-100" alt="{{$payload['name']}}">
+                        <h5>{{$payload['name']}}</h5>
+                        <p class="mb-2">Duration: {{$payload['duration']}}</p>
                     </div>
                     <div class="col-lg-5">
                         <div id = "video-info">
@@ -69,54 +70,40 @@
                             <div class="tab-content" id="myTabContent">
 
                                 <div class="tab-pane fade " id="MP4" role="tabpanel" aria-labelledby="home-tab">
-
+                                    @foreach($payload['video'] as $video)
                                     <div class="form-row py-3 border-bottom">
-                                        <div class="col-12 col-md-6 mt-lg-0">mp4 176x144</div>
+                                        <div class="col-12 col-md-6 mt-lg-0">{{$video['mimeType']}} {{$video['resolution']}}</div>
                                         <div class="col-12 col-md-6 mt-lg-0">
-                                            <a id="mp4-dl-btn" target="_blank" download="Ekbaar Bolo _ Vikings _ Banglalink presents Legends of Rock.mp4" href="https://rr5---sn-5hne6nz6.googlevideo.com/videoplayback?expire=1641832118&amp;ei=VgrcYdXZEs3m1gLY36KoBw&amp;ip=45.86.247.47&amp;id=o-AHimiWWtUGMChPBlqfFII5_muXAlQFvyh99H-nwPUe0n&amp;itag=17&amp;source=youtube&amp;requiressl=yes&amp;mh=PF&amp;mm=31%2C26&amp;mn=sn-5hne6nz6%2Csn-4g5ednz7&amp;ms=au%2Conr&amp;mv=m&amp;mvi=5&amp;pl=24&amp;initcwndbps=648750&amp;vprv=1&amp;mime=video%2F3gpp&amp;gir=yes&amp;clen=3482852&amp;dur=357.262&amp;lmt=1536435881626765&amp;mt=1641810051&amp;fvip=5&amp;fexp=24001373%2C24007246&amp;c=ANDROID&amp;txp=2311222&amp;sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cdur%2Clmt&amp;sig=AOq0QJ8wRAIgN1qeq04aBpPqkOvLx-xpDcMODRmxF2EA9-i5hZQngPwCIHJj_6Yenbym-n6Su3kln5fRh2GXcYr0MMj15Q63nwLw&amp;lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&amp;lsig=AG3C_xAwRQIgBcG4swx0HjCas_4Ulk6bgF6qgQ7wdbZUOvC4o-7uJG8CIQCJSwgN41MtzPcpzxGEmi0USJhhUGH56bz-rdiGB92jww%3D%3D&amp;title=Ekbaar Bolo _ Vikings _ Banglalink presents Legends of Rock" rel="nofollow" class="btn btn-primary">Download</a>
+                                            <a id="mp4-dl-btn" target="_blank"  href="{{$video['url']}}" rel="nofollow" class="btn btn-primary" download>Download</a>
                                         </div>
                                     </div>
-
-                                    <div class="form-row py-3 border-bottom">
-                                        <div class="col-12 col-md-6 mt-lg-0">mp4 640x360</div>
-                                        <div class="col-12 col-md-6 mt-lg-0">
-                                            <a id="mp4-dl-btn" target="_blank" download="Ekbaar Bolo _ Vikings _ Banglalink presents Legends of Rock.mp4" href="https://rr5---sn-5hne6nz6.googlevideo.com/videoplayback?expire=1641832118&amp;ei=VgrcYdXZEs3m1gLY36KoBw&amp;ip=45.86.247.47&amp;id=o-AHimiWWtUGMChPBlqfFII5_muXAlQFvyh99H-nwPUe0n&amp;itag=18&amp;source=youtube&amp;requiressl=yes&amp;mh=PF&amp;mm=31%2C26&amp;mn=sn-5hne6nz6%2Csn-4g5ednz7&amp;ms=au%2Conr&amp;mv=m&amp;mvi=5&amp;pl=24&amp;initcwndbps=648750&amp;vprv=1&amp;mime=video%2Fmp4&amp;gir=yes&amp;clen=31243877&amp;ratebypass=yes&amp;dur=357.215&amp;lmt=1536435880331319&amp;mt=1641810051&amp;fvip=5&amp;fexp=24001373%2C24007246&amp;c=ANDROID&amp;txp=2311222&amp;sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cratebypass%2Cdur%2Clmt&amp;sig=AOq0QJ8wRQIhAJZBazup0XrxzfyYB3f-A42Rx-p8HoYktvX5R81OjjrsAiB8ZaJx2CsPOeYqK6SUPH9Nr8losQi3CIugM3WezfhqQg%3D%3D&amp;lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&amp;lsig=AG3C_xAwRQIgBcG4swx0HjCas_4Ulk6bgF6qgQ7wdbZUOvC4o-7uJG8CIQCJSwgN41MtzPcpzxGEmi0USJhhUGH56bz-rdiGB92jww%3D%3D&amp;title=Ekbaar Bolo _ Vikings _ Banglalink presents Legends of Rock" rel="nofollow" class="btn btn-primary">Download</a>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row py-3 border-bottom">
-                                        <div class="col-12 col-md-6 mt-lg-0">mp4 1280x720</div>
-                                        <div class="col-12 col-md-6 mt-lg-0">
-                                            <a id="mp4-dl-btn" target="_blank" download="Ekbaar Bolo _ Vikings _ Banglalink presents Legends of Rock.mp4" href="https://rr5---sn-5hne6nz6.googlevideo.com/videoplayback?expire=1641832118&amp;ei=VgrcYdXZEs3m1gLY36KoBw&amp;ip=45.86.247.47&amp;id=o-AHimiWWtUGMChPBlqfFII5_muXAlQFvyh99H-nwPUe0n&amp;itag=22&amp;source=youtube&amp;requiressl=yes&amp;mh=PF&amp;mm=31%2C26&amp;mn=sn-5hne6nz6%2Csn-4g5ednz7&amp;ms=au%2Conr&amp;mv=m&amp;mvi=5&amp;pl=24&amp;initcwndbps=648750&amp;vprv=1&amp;mime=video%2Fmp4&amp;cnr=14&amp;ratebypass=yes&amp;dur=357.215&amp;lmt=1536436058085707&amp;mt=1641810051&amp;fvip=5&amp;fexp=24001373%2C24007246&amp;c=ANDROID&amp;txp=2311222&amp;sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Ccnr%2Cratebypass%2Cdur%2Clmt&amp;sig=AOq0QJ8wRQIhAIQiXJyN5d8JfPx4MSNL-RY3z7pP1nnR5itTmK6O-Q6uAiBvIKUyOsqXTWkSBYQ0-OHYBRdhIajFVfef9DeUk65dcw%3D%3D&amp;lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&amp;lsig=AG3C_xAwRQIgBcG4swx0HjCas_4Ulk6bgF6qgQ7wdbZUOvC4o-7uJG8CIQCJSwgN41MtzPcpzxGEmi0USJhhUGH56bz-rdiGB92jww%3D%3D&amp;title=Ekbaar Bolo _ Vikings _ Banglalink presents Legends of Rock" rel="nofollow" class="btn btn-primary">Download</a>
-                                        </div>
-                                    </div>
-
-
+                                    @endforeach
                                 </div>
 
 
                                 <div class="tab-pane fade show active" id="MP3" role="tabpanel" aria-labelledby="profile-tab">
                                     <div class="form-row pt-3">
                                         <div class="col-12 col-lg-6 mt-2 mt-lg-0">
-                                            <select class="form-control mr-2" id="formatselect">
-                                                <optgroup label="MP3">
-                                                    <option value="64">mp3 64kbps</option>
-                                                    <option value="128" selected>mp3 128kbps</option>
-                                                    <option value="192">mp3 192kbps</option>
-                                                    <option value="256">mp3 256kbps</option>
-                                                    <option value="320">mp3 320kbps</option>
-                                                </optgroup>
-                                            </select>
+                                            <div class="form-inline">
+                                                <input type="hidden" id="audio-contentLength" value="{{$payload['audible']['contentLength']}}">
+                                                <input type="hidden" id="audio-url" value="{{$payload['audible']['url']}}">
+                                                <input type="hidden" id="audio-id" value="{{$payload['id']}}">
+                                                <input type="hidden" id="audio-mimeType" value="{{$payload['audible']['mimeType']}}">
+                                                <select class="form-control" id="audio-bit">
+                                                    <optgroup label="MP3">
+                                                        <option value="64">mp3 64kbps</option>
+                                                        <option value="128" selected>mp3 128kbps</option>
+                                                        <option value="192">mp3 192kbps</option>
+                                                        <option value="256">mp3 256kbps</option>
+                                                        <option value="320">mp3 320kbps</option>
+                                                    </optgroup>
+                                                </select>
+                                                <button class="btn btn-primary" id="audio-convert">
+                                                  Convert
+                                                </button>
+                                            </div>
                                         </div>
                                         <div class="col-12 col-lg-6 mt-2 mt-lg-0">
-                                <span>
-                                  <button id="cvt-btn" class="btn btn-primary mr-1" >
-                                    <span id="cvt-spinner" class="spinner-border spinner-border-sm text-light mr-1 d-none" role="status"></span>
-                                    <span id="cvt-process" class="text-light p-0 m-0 d-none">0%</span>
-                                    <span id="cvt-text">Convert</span>
-                                  </button>
-                                  <a id="mp3-dl-btn" class="btn btn-primary mr-1 d-none">Download</a>
-                                </span>
                                         </div>
                                         <div id="mp3-dl-result" class="alert alert-danger d-none mt-2" role="alert" disabled></div>
                                     </div>
@@ -124,41 +111,14 @@
 
 
                                 <div class="tab-pane fade" id="Audio" role="tabpanel" aria-labelledby="contact-tab">
-
+                                    @foreach($payload['audio'] as $audio)
                                     <div class="form-row py-3 border-bottom">
-                                        <div class="col-12 col-md-6 mt-lg-0">m4a 47kbps</div>
+                                        <div class="col-12 col-md-6 mt-lg-0">{{$audio['mimeType']}} {{$audio['bit']}}</div>
                                         <div class="col-12 col-md-6 mt-lg-0">
-                                            <a id="mp4-dl-btn" target="_blank" download="Ekbaar Bolo _ Vikings _ Banglalink presents Legends of Rock.m4a" href="https://rr5---sn-5hne6nz6.googlevideo.com/videoplayback?expire=1641832118&amp;ei=VgrcYdXZEs3m1gLY36KoBw&amp;ip=45.86.247.47&amp;id=o-AHimiWWtUGMChPBlqfFII5_muXAlQFvyh99H-nwPUe0n&amp;itag=139&amp;source=youtube&amp;requiressl=yes&amp;mh=PF&amp;mm=31%2C26&amp;mn=sn-5hne6nz6%2Csn-4g5ednz7&amp;ms=au%2Conr&amp;mv=m&amp;mvi=5&amp;pl=24&amp;initcwndbps=648750&amp;vprv=1&amp;mime=audio%2Fmp4&amp;gir=yes&amp;clen=2125853&amp;dur=357.308&amp;lmt=1536435908076097&amp;mt=1641810051&amp;fvip=5&amp;keepalive=yes&amp;fexp=24001373%2C24007246&amp;c=ANDROID&amp;txp=2311222&amp;sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cdur%2Clmt&amp;sig=AOq0QJ8wRQIgRqRlkarwQ_WMXrpLNntG0AhE-PGFjP1qpf_U7KkCQR4CIQCraotC-PRgt3WNM6Vj6HR3x3UXWBaIYiHLJIydixcoLQ%3D%3D&amp;lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&amp;lsig=AG3C_xAwRQIgBcG4swx0HjCas_4Ulk6bgF6qgQ7wdbZUOvC4o-7uJG8CIQCJSwgN41MtzPcpzxGEmi0USJhhUGH56bz-rdiGB92jww%3D%3D&amp;title=Ekbaar Bolo _ Vikings _ Banglalink presents Legends of Rock" rel="nofollow" class="btn btn-primary">Download</a>
+                                            <a id="mp4-dl-btn" target="_blank" href="{{$audio['url']}}" rel="nofollow" class="btn btn-primary" download>Download</a>
                                         </div>
                                     </div>
-
-                                    <div class="form-row py-3 border-bottom">
-                                        <div class="col-12 col-md-6 mt-lg-0">webm 52kbps</div>
-                                        <div class="col-12 col-md-6 mt-lg-0">
-                                            <a id="mp4-dl-btn" target="_blank" download="Ekbaar Bolo _ Vikings _ Banglalink presents Legends of Rock.webm" href="https://rr5---sn-5hne6nz6.googlevideo.com/videoplayback?expire=1641832118&amp;ei=VgrcYdXZEs3m1gLY36KoBw&amp;ip=45.86.247.47&amp;id=o-AHimiWWtUGMChPBlqfFII5_muXAlQFvyh99H-nwPUe0n&amp;itag=249&amp;source=youtube&amp;requiressl=yes&amp;mh=PF&amp;mm=31%2C26&amp;mn=sn-5hne6nz6%2Csn-4g5ednz7&amp;ms=au%2Conr&amp;mv=m&amp;mvi=5&amp;pl=24&amp;initcwndbps=648750&amp;vprv=1&amp;mime=audio%2Fwebm&amp;gir=yes&amp;clen=2361979&amp;dur=357.181&amp;lmt=1536437014433161&amp;mt=1641810051&amp;fvip=5&amp;keepalive=yes&amp;fexp=24001373%2C24007246&amp;c=ANDROID&amp;txp=1301222&amp;sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cdur%2Clmt&amp;sig=AOq0QJ8wRgIhAKD7sMKRbOXdu3BmBnaOl_JX0ur2xGAYJDB34gPlHqAKAiEAnO1OpFm_OkyXVzsOW5mvuJMgKxyKPD3wWvu5JV1mFdI%3D&amp;lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&amp;lsig=AG3C_xAwRQIgBcG4swx0HjCas_4Ulk6bgF6qgQ7wdbZUOvC4o-7uJG8CIQCJSwgN41MtzPcpzxGEmi0USJhhUGH56bz-rdiGB92jww%3D%3D&amp;title=Ekbaar Bolo _ Vikings _ Banglalink presents Legends of Rock" rel="nofollow" class="btn btn-primary">Download</a>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row py-3 border-bottom">
-                                        <div class="col-12 col-md-6 mt-lg-0">webm 70kbps</div>
-                                        <div class="col-12 col-md-6 mt-lg-0">
-                                            <a id="mp4-dl-btn" target="_blank" download="Ekbaar Bolo _ Vikings _ Banglalink presents Legends of Rock.webm" href="https://rr5---sn-5hne6nz6.googlevideo.com/videoplayback?expire=1641832118&amp;ei=VgrcYdXZEs3m1gLY36KoBw&amp;ip=45.86.247.47&amp;id=o-AHimiWWtUGMChPBlqfFII5_muXAlQFvyh99H-nwPUe0n&amp;itag=250&amp;source=youtube&amp;requiressl=yes&amp;mh=PF&amp;mm=31%2C26&amp;mn=sn-5hne6nz6%2Csn-4g5ednz7&amp;ms=au%2Conr&amp;mv=m&amp;mvi=5&amp;pl=24&amp;initcwndbps=648750&amp;vprv=1&amp;mime=audio%2Fwebm&amp;gir=yes&amp;clen=3134827&amp;dur=357.181&amp;lmt=1536437024363769&amp;mt=1641810051&amp;fvip=5&amp;keepalive=yes&amp;fexp=24001373%2C24007246&amp;c=ANDROID&amp;txp=1301222&amp;sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cdur%2Clmt&amp;sig=AOq0QJ8wRQIhAKd7vdr3QQEBV7hJ-ld0wdyKC2HDRE5RwWHPvNig6Wv6AiA07W6fXox6ocGQhq1fHX86P1yaPavfIMlQGJ1ZOonQbw%3D%3D&amp;lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&amp;lsig=AG3C_xAwRQIgBcG4swx0HjCas_4Ulk6bgF6qgQ7wdbZUOvC4o-7uJG8CIQCJSwgN41MtzPcpzxGEmi0USJhhUGH56bz-rdiGB92jww%3D%3D&amp;title=Ekbaar Bolo _ Vikings _ Banglalink presents Legends of Rock" rel="nofollow" class="btn btn-primary">Download</a>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row py-3 border-bottom">
-                                        <div class="col-12 col-md-6 mt-lg-0">m4a 127kbps</div>
-                                        <div class="col-12 col-md-6 mt-lg-0">
-                                            <a id="mp4-dl-btn" target="_blank" download="Ekbaar Bolo _ Vikings _ Banglalink presents Legends of Rock.m4a" href="https://rr5---sn-5hne6nz6.googlevideo.com/videoplayback?expire=1641832118&amp;ei=VgrcYdXZEs3m1gLY36KoBw&amp;ip=45.86.247.47&amp;id=o-AHimiWWtUGMChPBlqfFII5_muXAlQFvyh99H-nwPUe0n&amp;itag=140&amp;source=youtube&amp;requiressl=yes&amp;mh=PF&amp;mm=31%2C26&amp;mn=sn-5hne6nz6%2Csn-4g5ednz7&amp;ms=au%2Conr&amp;mv=m&amp;mvi=5&amp;pl=24&amp;initcwndbps=648750&amp;vprv=1&amp;mime=audio%2Fmp4&amp;gir=yes&amp;clen=5674607&amp;dur=357.215&amp;lmt=1536435908174972&amp;mt=1641810051&amp;fvip=5&amp;keepalive=yes&amp;fexp=24001373%2C24007246&amp;c=ANDROID&amp;txp=2311222&amp;sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cdur%2Clmt&amp;sig=AOq0QJ8wRQIgX1lTWZsP3DeldPcDJHo-d744r43k79CIWq2dkCo0acACIQCwy9EkKxhLy3F5xfdn1IchB6fuxR9pdiaJKNyt3Ne_pw%3D%3D&amp;lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&amp;lsig=AG3C_xAwRQIgBcG4swx0HjCas_4Ulk6bgF6qgQ7wdbZUOvC4o-7uJG8CIQCJSwgN41MtzPcpzxGEmi0USJhhUGH56bz-rdiGB92jww%3D%3D&amp;title=Ekbaar Bolo _ Vikings _ Banglalink presents Legends of Rock" rel="nofollow" class="btn btn-primary">Download</a>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row py-3 border-bottom">
-                                        <div class="col-12 col-md-6 mt-lg-0">webm 137kbps</div>
-                                        <div class="col-12 col-md-6 mt-lg-0">
-                                            <a id="mp4-dl-btn" target="_blank" download="Ekbaar Bolo _ Vikings _ Banglalink presents Legends of Rock.webm" href="https://rr5---sn-5hne6nz6.googlevideo.com/videoplayback?expire=1641832118&amp;ei=VgrcYdXZEs3m1gLY36KoBw&amp;ip=45.86.247.47&amp;id=o-AHimiWWtUGMChPBlqfFII5_muXAlQFvyh99H-nwPUe0n&amp;itag=251&amp;source=youtube&amp;requiressl=yes&amp;mh=PF&amp;mm=31%2C26&amp;mn=sn-5hne6nz6%2Csn-4g5ednz7&amp;ms=au%2Conr&amp;mv=m&amp;mvi=5&amp;pl=24&amp;initcwndbps=648750&amp;vprv=1&amp;mime=audio%2Fwebm&amp;gir=yes&amp;clen=6140400&amp;dur=357.181&amp;lmt=1536437020341599&amp;mt=1641810051&amp;fvip=5&amp;keepalive=yes&amp;fexp=24001373%2C24007246&amp;c=ANDROID&amp;txp=1301222&amp;sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cdur%2Clmt&amp;sig=AOq0QJ8wRQIgdkhD8TunnRrKheH4rUVvDIjISrCkyDWUCTe_-NNwUM0CIQDkCo4MByMter1U4d1Eqp2NHYTbCWo8myeK86R_uLmjkw%3D%3D&amp;lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&amp;lsig=AG3C_xAwRQIgBcG4swx0HjCas_4Ulk6bgF6qgQ7wdbZUOvC4o-7uJG8CIQCJSwgN41MtzPcpzxGEmi0USJhhUGH56bz-rdiGB92jww%3D%3D&amp;title=Ekbaar Bolo _ Vikings _ Banglalink presents Legends of Rock" rel="nofollow" class="btn btn-primary">Download</a>
-                                        </div>
-                                    </div>
+                                    @endforeach
 
                                 </div>
 
@@ -185,6 +145,7 @@
             </div>
         </section>
     </div>
+    @endif
     <section class="container m-auto">
         <div class="tiktok">
             <div style="width: 100%;">
@@ -287,6 +248,27 @@
             </div>
         </div>
     </section>
+    <script>
+        $('#audio-convert').click(function(){
+
+            let id = $('#audio-id').val();
+            let url = $('#audio-url').val();
+            let mimeType = $('#audio-mimeType').val();
+            let contentLength = $('#audio-contentLength').val();
+            let bit = $('#audio-bit').val();
+            let data = {
+                'url' : url,
+                'mimeType' : mimeType ,
+                'contentLength' : contentLength,
+                'id' : id,
+                'bit' : bit
+            };
+            axios.post("{{route('convert')}}", data)
+                .then(function (response) {
+                    console.log(response)
+                })
+        })
+    </script>
 
     <script crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script crossorigin="anonymous"
