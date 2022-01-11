@@ -209,9 +209,12 @@ nav {
     width: 25px;
     height: 25px;
     color: #3b6c96;
-    top: 13px;
-    left: 27px;
+    top: 164px;
+    left: 467px;
     display: block;
+}
+.list-inline-item a {
+    text-decoration: none;
 }
 .has-search .form-control {
     padding-left: 3rem;
@@ -301,7 +304,7 @@ footer a {
     color: #3b6c96 !important;
 }
 .bg-primary {
-    background-color: #3b6c96 !important;
+    background-color: #3b6c96!important;
 }
 .btn-primary {
     background-color: #3b6c96 !important;
@@ -404,3 +407,4 @@ footer a {
         display: block;
     }
 }
+

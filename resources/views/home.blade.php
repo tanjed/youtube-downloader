@@ -72,9 +72,15 @@
                                 <div class="tab-pane fade " id="MP4" role="tabpanel" aria-labelledby="home-tab">
                                     @foreach($payload['video'] as $video)
                                     <div class="form-row py-3 border-bottom">
-                                        <div class="col-12 col-md-6 mt-lg-0">{{$video['mimeType']}} {{$video['resolution']}}</div>
-                                        <div class="col-12 col-md-6 mt-lg-0">
-                                            <a id="mp4-dl-btn" target="_blank"  href="{{$video['url']}}" rel="nofollow" class="btn btn-primary" download>Download</a>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="col-12">{{$video['mimeType']}} {{$video['resolution']}}</div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="col-12 ">
+                                                    <a id="mp4-dl-btn" target="_blank"  href="{{$video['url']}}" rel="nofollow" class="btn btn-primary" download>Download</a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     @endforeach
@@ -83,24 +89,31 @@
 
                                 <div class="tab-pane fade show active" id="MP3" role="tabpanel" aria-labelledby="profile-tab">
                                     <div class="form-row pt-3">
-                                        <div class="col-12 col-lg-6 mt-2 mt-lg-0">
+                                        <div class="col-12">
                                             <div class="form-inline">
                                                 <input type="hidden" id="audio-contentLength" value="{{$payload['audible']['contentLength']}}">
                                                 <input type="hidden" id="audio-url" value="{{$payload['audible']['url']}}">
                                                 <input type="hidden" id="audio-id" value="{{$payload['id']}}">
                                                 <input type="hidden" id="audio-mimeType" value="{{$payload['audible']['mimeType']}}">
-                                                <select class="form-control" id="audio-bit">
-                                                    <optgroup label="MP3">
-                                                        <option value="64">mp3 64kbps</option>
-                                                        <option value="128" selected>mp3 128kbps</option>
-                                                        <option value="192">mp3 192kbps</option>
-                                                        <option value="256">mp3 256kbps</option>
-                                                        <option value="320">mp3 320kbps</option>
-                                                    </optgroup>
-                                                </select>
-                                                <button class="btn btn-primary" id="audio-convert">
-                                                  Convert
-                                                </button>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <select class="form-control" id="audio-bit">
+                                                                <optgroup label="MP3">
+                                                                    <option value="64">mp3 64kbps</option>
+                                                                    <option value="128" selected>mp3 128kbps</option>
+                                                                    <option value="192">mp3 192kbps</option>
+                                                                    <option value="256">mp3 256kbps</option>
+                                                                    <option value="320">mp3 320kbps</option>
+                                                                </optgroup>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col">
+                                                            <button class="btn btn-primary" id="audio-convert">
+                                                                Convert
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
                                                 <form action="{{route('download')}}" style="display: none" id="audio-download" method="POST">
                                                     {{csrf_field()}}
                                                     <input type="hidden" id="audio-download-url" name="url">
@@ -120,10 +133,18 @@
                                 <div class="tab-pane fade" id="Audio" role="tabpanel" aria-labelledby="contact-tab">
                                     @foreach($payload['audio'] as $audio)
                                     <div class="form-row py-3 border-bottom">
-                                        <div class="col-12 col-md-6 mt-lg-0">{{$audio['mimeType']}} {{$audio['bit']}}</div>
-                                        <div class="col-12 col-md-6 mt-lg-0">
-                                            <a id="mp4-dl-btn" target="_blank" href="{{$audio['url']}}" rel="nofollow" class="btn btn-primary" download>Download</a>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="col-12">{{$audio['mimeType']}} {{$audio['bit']}}</div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="col-12">
+                                                    <a id="mp4-dl-btn" target="_blank" href="{{$audio['url']}}" rel="nofollow" class="btn btn-primary" download>Download</a>
+                                                </div>
+                                            </div>
                                         </div>
+
+
                                     </div>
                                     @endforeach
 
@@ -136,17 +157,17 @@
             </div>
         </section>
         <section class="py-5 container m-auto ">
-            <div class="row text-left">
+            <div class="row text-left ">
                 <div class="col-12">
                     <h2 class="text-center mb-4">Tips for Download YouTube Video</h2>
                     <ul class="pl-4">
                         <li>Select the format you want and click "Download" button.</li>
                         <li>In new window, press "CTRL + S" to save video OR right click to video, then select "Save as Video".</li>
                         <li>If our
-                            <a href="">Chrome Extension</a> is installed, the video download become even easier.
+                            <a href="" class="text-decoration-none">Chrome Extension</a> is installed, the video download become even easier.
                             In fact, it takes place immediately when the "Download" button is clicked.
                             In addition, a specific file name is also created for the video grabbed.</li>
-                        <li>It is strongly recommended to have the <a href="">Chrome Extension</a> installed.</li>
+                        <li>It is strongly recommended to have the <a href="" class="text-decoration-none">Chrome Extension</a> installed.</li>
                     </ul>
                 </div>
             </div>
@@ -162,10 +183,10 @@
                     </a>
                     <div class="tiktok-video">
                         <p>
-                            <a href="https://savett.cc" target="black">TikTok Video Downloader</a>
+                            <a href="https://savett.cc" class="text-decoration-none" target="black">TikTok Video Downloader</a>
                         </p>
                         <p class="tiktok-watermark">
-                            <a href="https://savett.cc" target="black">TikTok Downloader - Download and Save TikTok Videos Without Watermark.</a>
+                            <a href="https://savett.cc" target="black" class="text-decoration-none">TikTok Downloader - Download and Save TikTok Videos Without Watermark.</a>
                         </p>
                     </div>
                 </div>
@@ -178,7 +199,7 @@
         <div class="row m-auto text-left">
             <div class="col-md-4">
                 <div class="icon">
-                    <div class="icon-size rounded-circle text-primary mr-3">
+                    <div class="icon-size rounded-circle text-primary me-3">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
                             <path d="M0 0h24v24H0V0z" fill="none"></path>
                             <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm-1 4H8c-1.1 0-1.99.9-1.99 2L6 21c0 1.1.89 2 1.99 2H19c1.1 0 2-.9 2-2V11l-6-6zM8 21V7h6v5h5v9H8z"></path>
@@ -192,7 +213,7 @@
             </div>
             <div class="col-md-4">
                 <div class="icon">
-                    <div class="icon-size rounded-circle text-primary mr-3">
+                    <div class="icon-size rounded-circle text-primary me-3">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
                             <g>
                                 <path d="M0,0h24v24H0V0z" fill="none"></path>
@@ -216,7 +237,7 @@
             </div>
             <div class="col-md-4">
                 <div class="icon">
-                    <div class="icon-size rounded-circle text-primary mr-3">
+                    <div class="icon-size rounded-circle text-primary me-3">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
                             <path d="M0 0h24v24H0V0z" fill="none"></path>
                             <path
@@ -292,12 +313,6 @@
     </script>
 
     <script crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script crossorigin="anonymous"
-            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script crossorigin="anonymous"
-            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ef98087bce3a2e3"
-            async="async"></script>
-    <script type="text/javascript" src="/static/js/dark-2c78c10e90.js"></script>
+    <script crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
 @endsection

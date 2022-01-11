@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar navbar-expand navbar-dark bg-primary fixed-top">
+    <nav class="navbar navbar-expand fixed-top bg-primary">
         <div class="container">
             <a class="navbar-brand" href="{{route('home')}}">
                 <img class="border rounded d-none d-sm-inline" src="./image/favicon.ico" width="30" height="30" alt="320YTMp3" />
