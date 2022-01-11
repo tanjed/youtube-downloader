@@ -142,10 +142,10 @@
                         <li>Select the format you want and click "Download" button.</li>
                         <li>In new window, press "CTRL + S" to save video OR right click to video, then select "Save as Video".</li>
                         <li>If our
-                            <a href="/en33/plugin">Chrome Extension</a> is installed, the video download become even easier.
+                            <a href="">Chrome Extension</a> is installed, the video download become even easier.
                             In fact, it takes place immediately when the "Download" button is clicked.
                             In addition, a specific file name is also created for the video grabbed.</li>
-                        <li>It is strongly recommended to have the <a href="/en33/plugin">Chrome Extension</a> installed.</li>
+                        <li>It is strongly recommended to have the <a href="">Chrome Extension</a> installed.</li>
                     </ul>
                 </div>
             </div>
@@ -192,7 +192,7 @@
             <div class="col-md-4">
                 <div class="icon">
                     <div class="icon-size rounded-circle text-primary mr-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
                             <g>
                                 <path d="M0,0h24v24H0V0z" fill="none"></path>
                             </g>
