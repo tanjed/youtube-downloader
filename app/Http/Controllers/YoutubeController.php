@@ -80,13 +80,20 @@ class YoutubeController extends Controller
         set_time_limit(0);
         $id = $request->id;
         $url = Downloader::get($request);
-        $mp3FilePath = public_path($id.'_'.$request->bit.'.mp3');
+        $fileName = $id.'_'.$request->bit.'.mp3';
+        $mp3FilePath = public_path($fileName);
         shell_exec("ffmpeg -i {$url} -ar 44100 -ac 2 -b:a {$request->bit}k {$mp3FilePath}");
         unlink($url);
         return [
             'success' => true,
-            'url' => $mp3FilePath,
+            'url' => $fileName,
         ];
+    }
+
+    public function downloadResource(Request $request)
+    {
+        $file = $request->file;
+        return response()->download($file)->deleteFileAfterSend(true);
     }
 
 }

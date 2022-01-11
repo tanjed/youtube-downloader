@@ -101,6 +101,9 @@
                                                 <button class="btn btn-primary" id="audio-convert">
                                                   Convert
                                                 </button>
+                                                <a class="btn btn-primary" id="audio-download" style="display: none">
+                                                    Download
+                                                </a>
                                             </div>
                                         </div>
                                         <div class="col-12 col-lg-6 mt-2 mt-lg-0">
@@ -250,6 +253,7 @@
     </section>
     <script>
         $('#audio-convert').click(function(){
+            $('#audio-convert').html('Converting...')
 
             let id = $('#audio-id').val();
             let url = $('#audio-url').val();
@@ -266,7 +270,19 @@
             axios.post("{{route('convert')}}", data)
                 .then(function (response) {
                     console.log(response)
+                    if(response.data.success)
+                    {
+                        $('#audio-convert').hide()
+                        $('#audio-download').attr('href',response.data.url).show()
+                    }
+                    else
+                    {
+                        $('#audio-convert').html('Error')
+                    }
                 })
+            .catch(function () {
+                $('#audio-convert').html('Error')
+            })
         })
     </script>
 

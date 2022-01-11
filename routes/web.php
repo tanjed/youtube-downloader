@@ -28,4 +28,5 @@ Route::get('/', function () {
 //})->name('convert');
 
 
-Route::post('/download',[\App\Http\Controllers\YoutubeController::class,'search'])->name('search');
+Route::post('/search',[\App\Http\Controllers\YoutubeController::class,'search'])->name('search');
+Route::post('/download',[\App\Http\Controllers\YoutubeController::class,'downloadResource'])->name('download');
