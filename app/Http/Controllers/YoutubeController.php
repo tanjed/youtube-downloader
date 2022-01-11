@@ -82,11 +82,12 @@ class YoutubeController extends Controller
         $url = Downloader::get($request);
         $fileName = $id.'_'.$request->bit.'.mp3';
         $mp3FilePath = public_path($fileName);
-        shell_exec("ffmpeg -i {$url} -ar 44100 -ac 2 -b:a {$request->bit}k {$mp3FilePath}");
+        $frequency = $this->getFrequencyFromBit($request->bit);
+        shell_exec("ffmpeg -i {$url} -ar {$frequency} -ac 2 -b:a {$request->bit}k {$mp3FilePath}");
         unlink($url);
         return [
             'success' => true,
-            'url' => $fileName,
+            'url' => $mp3FilePath,
         ];
     }
 
@@ -94,6 +95,24 @@ class YoutubeController extends Controller
     {
         $file = $request->file;
         return response()->download($file)->deleteFileAfterSend(true);
+    }
+
+    private function getFrequencyFromBit($bit) : int
+    {
+        switch ($bit)
+        {
+            case 64 :
+            default :
+                return 8000;
+            case  128 :
+                return 16000;
+            case 192 :
+                return 32000;
+            case 256 :
+                return 44100;
+            case 320 :
+                return 48000;
+        }
     }
 
 }

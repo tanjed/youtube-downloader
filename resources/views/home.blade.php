@@ -101,9 +101,12 @@
                                                 <button class="btn btn-primary" id="audio-convert">
                                                   Convert
                                                 </button>
-                                                <a class="btn btn-primary" id="audio-download" style="display: none">
-                                                    Download
-                                                </a>
+                                                <form action="{{route('download')}}" style="display: none" id="audio-download">
+                                                    <input type="hidden" id="audio-download-url" name="url">
+                                                    <button class="btn btn-primary" type="submit">
+                                                        Download
+                                                    </button>
+                                                </form>
                                             </div>
                                         </div>
                                         <div class="col-12 col-lg-6 mt-2 mt-lg-0">
@@ -273,7 +276,8 @@
                     if(response.data.success)
                     {
                         $('#audio-convert').hide()
-                        $('#audio-download').attr('href',response.data.url).show()
+                        $('#audio-download-url').val(response.data.url)
+                        $('#audio-download').show()
                     }
                     else
                     {
