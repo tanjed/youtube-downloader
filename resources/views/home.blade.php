@@ -101,7 +101,8 @@
                                                 <button class="btn btn-primary" id="audio-convert">
                                                   Convert
                                                 </button>
-                                                <form action="{{route('download')}}" style="display: none" id="audio-download">
+                                                <form action="{{route('download')}}" style="display: none" id="audio-download" method="POST">
+                                                    {{csrf_field()}}
                                                     <input type="hidden" id="audio-download-url" name="url">
                                                     <button class="btn btn-primary" type="submit">
                                                         Download
