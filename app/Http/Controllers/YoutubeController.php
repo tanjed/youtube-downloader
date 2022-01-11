@@ -93,7 +93,7 @@ class YoutubeController extends Controller
 
     public function downloadResource(Request $request)
     {
-        $file = $request->file;
+        $file = $request->url;
         return response()->download($file)->deleteFileAfterSend(true);
     }
 
