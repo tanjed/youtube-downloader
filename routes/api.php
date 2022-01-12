@@ -18,4 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::post('convert',[\App\Http\Controllers\YoutubeController::class,'convertToMP3'])->name('convert');
+Route::post('convert',[\App\Http\Controllers\YoutubeController::class,'downloadMedia'])->name('convert');

@@ -34,122 +34,81 @@
                     </div>
                     <div class="col-lg-5">
                         <div id = "video-info">
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-
-                                <li class="nav-item" role="presentation">
-                                    <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#MP3" role="tab" aria-controls="profile" aria-selected="true">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cloud-download" viewBox="0 0 16 16">
-                                            <path d="M4.406 1.342A5.53 5.53 0 0 1 8 0c2.69 0 4.923 2 5.166 4.579C14.758 4.804 16 6.137 16 7.773 16 9.569 14.502 11 12.687 11H10a.5.5 0 0 1 0-1h2.688C13.979 10 15 8.988 15 7.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 2.825 10.328 1 8 1a4.53 4.53 0 0 0-2.941 1.1c-.757.652-1.153 1.438-1.153 2.055v.448l-.445.049C2.064 4.805 1 5.952 1 7.318 1 8.785 2.23 10 3.781 10H6a.5.5 0 0 1 0 1H3.781C1.708 11 0 9.366 0 7.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383z"></path>
-                                            <path d="M7.646 15.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 14.293V5.5a.5.5 0 0 0-1 0v8.793l-2.146-2.147a.5.5 0 0 0-.708.708l3 3z"></path>
-                                        </svg>
-                                        MP3</a>
-                                </li>
-
-
-                                <li class="nav-item" role="presentation">
-                                    <a class="nav-link " id="home-tab" data-toggle="tab" href="#MP4" role="tab" aria-controls="home" aria-selected="false">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-play-btn" viewBox="0 0 16 16">
-                                            <path d="M6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"></path>
-                                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm15 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"></path>
-                                        </svg>
-                                        Video</a>
-                                </li>
-
-
-                                <li class="nav-item" role="presentation">
-                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#Audio" role="tab" aria-controls="contact" aria-selected="false">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-music-note-beamed" viewBox="0 0 16 16">
-                                            <path d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13c0-1.104 1.12-2 2.5-2s2.5.896 2.5 2zm9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2z"/>
-                                            <path fill-rule="evenodd" d="M14 11V2h1v9h-1zM6 3v10H5V3h1z"/>
-                                            <path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4V2.905z"/>
-                                        </svg>
-                                        Audio</a>
-                                </li>
-
-                            </ul>
-                            <div class="tab-content" id="myTabContent">
-
-                                <div class="tab-pane fade " id="MP4" role="tabpanel" aria-labelledby="home-tab">
-                                    @foreach($payload['video'] as $video)
-                                    <div class="form-row py-3 border-bottom">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="col-12">{{$video['mimeType']}} {{$video['resolution']}}</div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="col-12 ">
-                                                    <a id="mp4-dl-btn" target="_blank"  href="{{$video['url']}}" rel="nofollow" class="btn btn-primary" download>Download</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @endforeach
-                                </div>
-
-
-                                <div class="tab-pane fade show active" id="MP3" role="tabpanel" aria-labelledby="profile-tab">
-                                    <div class="form-row pt-3">
-                                        <div class="col-12">
-                                            <div class="form-inline">
-                                                <input type="hidden" id="audio-contentLength" value="{{$payload['audible']['contentLength']}}">
-                                                <input type="hidden" id="audio-url" value="{{$payload['audible']['url']}}">
-                                                <input type="hidden" id="audio-id" value="{{$payload['id']}}">
-                                                <input type="hidden" id="audio-mimeType" value="{{$payload['audible']['mimeType']}}">
-                                                    <div class="row">
-                                                        <div class="col">
-                                                            <select class="form-control" id="audio-bit">
-                                                                <optgroup label="MP3">
-                                                                    <option value="64">mp3 64kbps</option>
-                                                                    <option value="128" selected>mp3 128kbps</option>
-                                                                    <option value="192">mp3 192kbps</option>
-                                                                    <option value="256">mp3 256kbps</option>
-                                                                    <option value="320">mp3 320kbps</option>
-                                                                </optgroup>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col">
-                                                            <button class="btn btn-primary" id="audio-convert">
-                                                                Convert
-                                                            </button>
-                                                        </div>
-                                                    </div>
-
-                                                <form action="{{route('download')}}" style="display: none" id="audio-download" method="POST">
-                                                    {{csrf_field()}}
-                                                    <input type="hidden" id="audio-download-url" name="url">
-                                                    <button class="btn btn-primary" type="submit">
-                                                        Download
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-lg-6 mt-2 mt-lg-0">
-                                        </div>
-                                        <div id="mp3-dl-result" class="alert alert-danger d-none mt-2" role="alert" disabled></div>
+                            <form id="media-convert">
+                                <div class="row">
+                                    <div class="col">
+                                        <select class="form-control" id="media-option">
+                                            <optgroup label="Video">
+                                                @foreach($payload['video'] as $index => $video)
+                                                    <option
+                                                        data-type="VIDEO"
+                                                        data-url="{{$video['url']}}"
+                                                        data-clength="{{$video['contentLength']}}"
+                                                        data-mtype="{{$video['mimeType']}}" {{$index == (count($payload['video'])-1) ? "selected" : ""}}>
+                                                        {{$video['mimeTypeShort']}} {{$video['resolution']}}</option>
+                                                @endforeach
+                                            </optgroup>
+                                            <optgroup label="Audio">
+                                                @foreach($payload['audio'] as $audio)
+                                                    <option
+                                                        data-type="AUDIO"
+                                                        data-url="{{$audio['url']}}"
+                                                        data-clength="{{$audio['contentLength']}}"
+                                                        data-mtype="{{$audio['mimeType']}}">
+                                                        {{$audio['mimeTypeShort']}} {{$audio['bit']}}
+                                                    </option>
+                                                @endforeach
+                                            </optgroup>
+                                            <optgroup label="MP3">
+                                                <option
+                                                    data-url="{{$payload['audible']['url']}}"
+                                                    data-clength="{{$payload['audible']['contentLength']}}"
+                                                    data-mtype="{{$payload['audible']['mimeType']}}"
+                                                    data-type="MP3"
+                                                    data-bit="64">mp3 64kbps</option>
+                                                <option
+                                                    data-url="{{$payload['audible']['url']}}"
+                                                    data-clength="{{$payload['audible']['contentLength']}}"
+                                                    data-mtype="{{$payload['audible']['mimeType']}}"
+                                                    data-type="MP3"
+                                                    data-bit="128">mp3 128kbps</option>
+                                                <option
+                                                    data-url="{{$payload['audible']['url']}}"
+                                                    data-clength="{{$payload['audible']['contentLength']}}"
+                                                    data-mtype="{{$payload['audible']['mimeType']}}"
+                                                    data-type="MP3"
+                                                    data-bit="192">mp3 192kbps</option>
+                                                <option
+                                                    data-url="{{$payload['audible']['url']}}"
+                                                    data-clength="{{$payload['audible']['contentLength']}}"
+                                                    data-mtype="{{$payload['audible']['mimeType']}}"
+                                                    data-type="MP3"
+                                                    data-bit="256">mp3 256kbps</option>
+                                                <option
+                                                    data-url="{{$payload['audible']['url']}}"
+                                                    data-clength="{{$payload['audible']['contentLength']}}"
+                                                    data-mtype="{{$payload['audible']['mimeType']}}"
+                                                    data-type="MP3"
+                                                    data-bit="320">mp3 320kbps</option>
+                                            </optgroup>
+                                        </select>
                                     </div>
                                 </div>
-
-
-                                <div class="tab-pane fade" id="Audio" role="tabpanel" aria-labelledby="contact-tab">
-                                    @foreach($payload['audio'] as $audio)
-                                    <div class="form-row py-3 border-bottom">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="col-12">{{$audio['mimeType']}} {{$audio['bit']}}</div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="col-12">
-                                                    <a id="mp4-dl-btn" target="_blank" href="{{$audio['url']}}" rel="nofollow" class="btn btn-primary" download>Download</a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
+                                <div class="row mt-3">
+                                    <div class="col">
+                                        <button class="btn btn-success w-100" id="request-convert-button" type="submit">Convert</button>
                                     </div>
-                                    @endforeach
-
                                 </div>
+                            </form>
 
+                            <div id="media-download" style="display: none">
+                                <form action="{{route('download')}}" method="POST">
+                                    {{csrf_field()}}
+                                    <input type="hidden" name="url" id="media-download-url">
+                                    <button type="submit" class="btn btn-success w-100">Download</button>
+                                </form>
+                                <br>
+                                <a href="/" class="btn btn-primary w-100">Continue</a>
                             </div>
                         </div>
                     </div>
@@ -276,42 +235,47 @@
             </div>
         </div>
     </section>
+    @if(isset($payload))
     <script>
-        $('#audio-convert').click(function(){
-            $('#audio-convert').html('Converting...')
+        $('#media-convert').submit((e) => {
+            e.preventDefault()
+            $('#request-convert-button').html('Converting...')
+            const selected = $('#media-option').find(':selected');
+            let id = "{{ $payload['id'] }}"
+            let url = selected.data('url');
+            let mimeType = selected.data('mtype');
+            let contentLength = selected.data('clength');
+            let bit = selected.data('bit');
+            let type = selected.data('type')
 
-            let id = $('#audio-id').val();
-            let url = $('#audio-url').val();
-            let mimeType = $('#audio-mimeType').val();
-            let contentLength = $('#audio-contentLength').val();
-            let bit = $('#audio-bit').val();
             let data = {
                 'url' : url,
                 'mimeType' : mimeType ,
                 'contentLength' : contentLength,
                 'id' : id,
-                'bit' : bit
+                'bit' : bit,
+                'type' : type
             };
             axios.post("{{route('convert')}}", data)
                 .then(function (response) {
-                    console.log(response)
                     if(response.data.success)
                     {
-                        $('#audio-convert').hide()
-                        $('#audio-download-url').val(response.data.url)
-                        $('#audio-download').show()
+                        $('#media-convert').hide()
+                        $('#media-download').show()
+                        $('#media-download-url').val(response.data.url)
                     }
                     else
                     {
-                        $('#audio-convert').html('Error')
+                        $('#media-convert').html('Error')
                     }
                 })
             .catch(function () {
-                $('#audio-convert').html('Error')
+                $('#media-convert').html('Error')
             })
-        })
-    </script>
 
+        });
+    </script>
+    @endif
     <script crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
 

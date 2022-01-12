@@ -11,7 +11,7 @@ class Downloader
     public static function get($object)
     {
         $info = self::getMimeType($object->mimeType);
-        $fileName = $object->id.'_'.$object->bit;
+        $fileName = $object->id;
         $filePath =  public_path("{$fileName}.{$info['extension']}");
         $url = $object->url;
         $length = $object->contentLength;

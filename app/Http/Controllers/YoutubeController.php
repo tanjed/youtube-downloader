@@ -42,6 +42,7 @@ class YoutubeController extends Controller
             'video' => [],
             'audible' => [
                 'mimeType' => $audible->mimeType,
+                'mimeTypeShort' => $this->getMimeType($audible->mimeType),
                 'url' => $audible->url,
                 'contentLength' => $audible->contentLength
             ]
@@ -50,17 +51,23 @@ class YoutubeController extends Controller
         foreach ($videoFormats as $format)
         {
             $payload['video'][] = [
-                'mimeType' => $this->getMimeType($format->mimeType),
+                'mimeType' => $format->mimeType,
+                'mimeTypeShort' => $this->getMimeType($format->mimeType),
                 'resolution' => $format->width.'x'.$format->height,
                 'url' => $format->url,
+                'contentLength' => $format->contentLength
+//                'size' => ($format->contentLength / 1000000).' MB'
             ];
         }
         foreach ($audioFormats as $format)
         {
             $payload['audio'][] = [
-                'mimeType' => $this->getMimeType($format->mimeType),
+                'mimeType' => $format->mimeType,
+                'mimeTypeShort' => $this->getMimeType($format->mimeType),
                 'bit' => (int)($format->audioSampleRate/1000). 'kbps',
                 'url' => $format->url,
+                'contentLength' => $format->contentLength
+//                'size' => ($format->contentLength / 1000000).' MB'
             ];
         }
 
@@ -72,6 +79,29 @@ class YoutubeController extends Controller
     {
         $mimeType = explode(';',$combinedType);
         return explode('/',$mimeType[0])[1];
+    }
+
+    public function downloadMedia(Request $request)
+    {
+        set_time_limit(0);
+        $id = $request->id;
+        $url = Downloader::get($request);
+        if ($request->type != 'MP3')
+        {
+            return [
+                'success' => true,
+                'url' => $url,
+            ];
+        }
+        $fileName = $id.'.mp3';
+        $mp3FilePath = public_path($fileName);
+        $frequency = $this->getFrequencyFromBit($request->bit);
+        shell_exec("ffmpeg -i {$url} -ar {$frequency} -ac 2 -b:a {$request->bit}k {$mp3FilePath}");
+        unlink($url);
+        return [
+            'success' => true,
+            'url' => $mp3FilePath,
+        ];
     }
 
 
