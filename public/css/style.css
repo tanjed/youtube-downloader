@@ -204,13 +204,13 @@ nav {
     display: flex;
 }
 .has-search svg {
-    position: absolute;
+    position: relative;
     z-index: 7;
     width: 25px;
     height: 25px;
     color: #3b6c96;
-    top: 164px;
-    left: 467px;
+    top: 13px;
+    left: 27px;
     display: block;
 }
 .list-inline-item a {
@@ -333,6 +333,12 @@ footer a {
     }
 }
 @media (max-width: 576px) {
+    .has-search svg {
+       
+        top: 35px;
+        left: 16px;
+        
+    }
     .bg-theme {
         padding-top: 3rem;
         padding-bottom: 3rem;
