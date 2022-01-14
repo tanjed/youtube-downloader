@@ -53,7 +53,8 @@ class YoutubeController extends Controller
             $payload['video'][] = [
                 'mimeType' => $format->mimeType,
                 'mimeTypeShort' => $this->getMimeType($format->mimeType),
-                'resolution' => $format->width.'x'.$format->height,
+                //'resolution' => $format->width.'x'.$format->height,
+                'resolution' => $format->height.'p',
                 'url' => $format->url,
                 'contentLength' => $format->contentLength
 //                'size' => ($format->contentLength / 1000000).' MB'

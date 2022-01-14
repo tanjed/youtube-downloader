@@ -45,7 +45,7 @@
                                                         data-url="{{$video['url']}}"
                                                         data-clength="{{$video['contentLength']}}"
                                                         data-mtype="{{$video['mimeType']}}" {{$index == (count($payload['video'])-1) ? "selected" : ""}}>
-                                                        {{$video['mimeTypeShort']}} {{$video['resolution']}}</option>
+                                                        {{$video['mimeTypeShort']}} {{$video['resolution']}} ({{$video['contentLength']})</option>
                                                 @endforeach
                                             </optgroup>
                                             <optgroup label="Audio">
@@ -55,7 +55,7 @@
                                                         data-url="{{$audio['url']}}"
                                                         data-clength="{{$audio['contentLength']}}"
                                                         data-mtype="{{$audio['mimeType']}}">
-                                                        {{$audio['mimeTypeShort']}} {{$audio['bit']}}
+                                                        {{$audio['mimeTypeShort']}} {{$audio['bit']}} ({{$audio['contentLength']})
                                                     </option>
                                                 @endforeach
                                             </optgroup>
