@@ -45,7 +45,7 @@
                                                         data-url="{{$video['url']}}"
                                                         data-clength="{{$video['contentLength']}}"
                                                         data-mtype="{{$video['mimeType']}}" {{$index == (count($payload['video'])-1) ? "selected" : ""}}>
-                                                        {{$video['mimeTypeShort']}} {{$video['resolution']}} ({{$video['contentLength']})</option>
+                                                        {{$video['mimeTypeShort']}} {{$video['resolution']}}</option>
                                                 @endforeach
                                             </optgroup>
                                             <optgroup label="Audio">
@@ -55,7 +55,7 @@
                                                         data-url="{{$audio['url']}}"
                                                         data-clength="{{$audio['contentLength']}}"
                                                         data-mtype="{{$audio['mimeType']}}">
-                                                        {{$audio['mimeTypeShort']}} {{$audio['bit']}} ({{$audio['contentLength']})
+                                                        {{$audio['mimeTypeShort']}} {{$audio['bit']}}
                                                     </option>
                                                 @endforeach
                                             </optgroup>
@@ -247,6 +247,7 @@
             let contentLength = selected.data('clength');
             let bit = selected.data('bit');
             let type = selected.data('type')
+            let name = "{{$payload['name']}}"
 
             let data = {
                 'url' : url,
@@ -254,7 +255,8 @@
                 'contentLength' : contentLength,
                 'id' : id,
                 'bit' : bit,
-                'type' : type
+                'type' : type,
+                'name' : name
             };
             axios.post("{{route('convert')}}", data)
                 .then(function (response) {
