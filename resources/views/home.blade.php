@@ -38,7 +38,7 @@
                             <form id="media-convert">
                                 <div class="row">
                                     <div class="col">
-                                        <select class="form-control" id="media-option">
+                                        <select class="form-control form-control-small" id="media-option">
                                             <optgroup label="Video">
                                                 @foreach($payload['video'] as $index => $video)
                                                     <option
