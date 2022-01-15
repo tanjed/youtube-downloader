@@ -13,6 +13,8 @@ class YoutubeController extends Controller
 {
     public function search(Request $request)
     {
+        if (!$request->q)
+            return redirect('/');
         $payload = $this->getVideo($request->q);
 //        dd($payload);
         return view('home',compact('payload'));
@@ -37,6 +39,7 @@ class YoutubeController extends Controller
             'id' => $info['videoId'],
             'thumbnail' => $thumbnail['url'],
             'name' => $info['title'],
+            'author' => $info['author'],
             'duration' => gmdate("H:i:s", $info['lengthSeconds']),
             'audio' => [],
             'video' => [],

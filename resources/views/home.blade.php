@@ -8,7 +8,7 @@
             </div>
             <div class="row">
                 <div class="col-12 col-lg-10 mx-auto">
-                    <form id="go" class="form-group" action="{{route('search')}}" method="POST">
+                    <form id="go" class="form-group" action="{{route('search')}}" method="GET">
                         {{csrf_field()}}
                         <div class="has-search">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -30,6 +30,7 @@
                     <div class="col-lg-5">
                         <img src="{{$payload['thumbnail']}}" class="figure-img img-fluid rounded w-100" alt="{{$payload['name']}}">
                         <h5>{{$payload['name']}}</h5>
+                        <p class="mb-"><b>{{$payload['author']}}</b></p>
                         <p class="mb-2">Duration: {{$payload['duration']}}</p>
                     </div>
                     <div class="col-lg-5">
