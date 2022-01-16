@@ -85,10 +85,16 @@ class YoutubeController extends Controller
         return explode('/',$mimeType[0])[1];
     }
 
+    public function clean($string) {
+        $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
+
+        return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+    }
+
     public function downloadMedia(Request $request)
     {
         set_time_limit(0);
-        $id = $request->name;
+        $id = $this->clean($request->name);
         $url = Downloader::get($request);
         if ($request->type != 'MP3')
         {
@@ -101,7 +107,7 @@ class YoutubeController extends Controller
         $mp3FilePath = public_path($fileName);
         $frequency = $this->getFrequencyFromBit($request->bit);
         shell_exec("ffmpeg -i {$url} -ar {$frequency} -ac 2 -b:a {$request->bit}k {$mp3FilePath}");
-      //  unlink($url);
+        unlink($url);
         return [
             'success' => true,
             'url' => $mp3FilePath,

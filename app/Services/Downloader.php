@@ -11,7 +11,7 @@ class Downloader
     public static function get($object)
     {
         $info = self::getMimeType($object->mimeType);
-        $fileName = $object->name;
+        $fileName = self::clean($object->name);
         $filePath =  public_path("{$fileName}.{$info['extension']}");
         $url = $object->url;
         $length = $object->contentLength;
@@ -35,5 +35,11 @@ class Downloader
             'extension' => $extension,
             'mimType' => $mimeType
         ];
+    }
+
+    public static function clean($string) {
+        $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
+
+        return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
     }
 }
