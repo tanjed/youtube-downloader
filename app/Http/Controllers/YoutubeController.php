@@ -101,10 +101,11 @@ class YoutubeController extends Controller
         $mp3FilePath = public_path($fileName);
         $frequency = $this->getFrequencyFromBit($request->bit);
         shell_exec("ffmpeg -i {$url} -ar {$frequency} -ac 2 -b:a {$request->bit}k {$mp3FilePath}");
-        unlink($url);
+      //  unlink($url);
         return [
             'success' => true,
             'url' => $mp3FilePath,
+            'command' => "ffmpeg -i {$url} -ar {$frequency} -ac 2 -b:a {$request->bit}k {$mp3FilePath}"
         ];
     }
 
@@ -118,10 +119,11 @@ class YoutubeController extends Controller
         $mp3FilePath = public_path($fileName);
         $frequency = $this->getFrequencyFromBit($request->bit);
         shell_exec("ffmpeg -i {$url} -ar {$frequency} -ac 2 -b:a {$request->bit}k {$mp3FilePath}");
-        unlink($url);
+       // unlink($url);
         return [
             'success' => true,
             'url' => $mp3FilePath,
+            'command' => "ffmpeg -i {$url} -ar {$frequency} -ac 2 -b:a {$request->bit}k {$mp3FilePath}"
         ];
     }
 
