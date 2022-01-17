@@ -93,7 +93,7 @@ class YoutubeController extends Controller
     public function downloadMedia(Request $request)
     {
         set_time_limit(0);
-        $id = $request->id;
+        $id = $this->clean($request->name);
         $url = Downloader::get($request);
         if ($request->type != 'MP3')
         {
