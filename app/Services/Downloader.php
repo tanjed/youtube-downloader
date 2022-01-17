@@ -38,8 +38,7 @@ class Downloader
     }
 
     public static function clean($string) {
-        $string = str_replace(' ', '_', $string); // Replaces all spaces with hyphens.
-        return $string;
-//        return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+        $string = preg_replace('/[^A-Za-z0-9\-]/', '-', $string);
+        return preg_replace('/-+/', '-', $string); // Removes special chars.
     }
 }
