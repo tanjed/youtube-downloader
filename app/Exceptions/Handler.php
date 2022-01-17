@@ -38,6 +38,8 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        if ($exception instanceof RouteNotFoundException || $exception instanceof MethodNotAllowedException)
+            return redirect('/');
         parent::report($exception);
     }
 
