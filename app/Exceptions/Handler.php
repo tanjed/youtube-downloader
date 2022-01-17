@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\Routing\Exception\MethodNotAllowedException;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
@@ -38,8 +39,6 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
-        if ($exception instanceof RouteNotFoundException || $exception instanceof MethodNotAllowedException)
-            return redirect('/');
         parent::report($exception);
     }
 
@@ -54,7 +53,8 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if ($exception instanceof RouteNotFoundException || $exception instanceof MethodNotAllowedException)
+        if ($exception instanceof RouteNotFoundException || $exception instanceof MethodNotAllowedException
+            || $exception instanceof MethodNotAllowedHttpException)
             return redirect('/');
         return parent::render($request, $exception);
     }
